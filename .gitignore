@@ -1,0 +1,71 @@
+# =========================
+# JetBrains / CLion
+# =========================
+.idea/
+*.iml
+cmake-build-*/
+
+# =========================
+# CMake
+# =========================
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+compile_commands.json
+
+# =========================
+# Build Artifacts
+# =========================
+build/
+out/
+bin/
+lib/
+*.exe
+*.dll
+*.so
+*.dylib
+*.a
+*.o
+*.obj
+
+# =========================
+# Debug / Release
+# =========================
+Debug/
+Release/
+RelWithDebInfo/
+MinSizeRel/
+
+# =========================
+# macOS
+# =========================
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# =========================
+# Windows
+# =========================
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# =========================
+# Logs / Temp
+# =========================
+*.log
+*.tmp
+*.swp
+*.swo
+
+# =========================
+# Packaging
+# =========================
+*.zip
+*.tar.gz
+*.rar

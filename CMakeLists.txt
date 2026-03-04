@@ -5,9 +5,9 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
-add_executable(LibrarySystem Src/main.cpp Src/database.cpp Src/sha256.cpp
+add_executable(${CMAKE_PROJECT_NAME} Src/main.cpp Src/database.cpp Src/sha256.cpp
         lib/sqlite3.c
         lib/sqlite3.h
 )
 
-target_include_directories(LibrarySystem PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})

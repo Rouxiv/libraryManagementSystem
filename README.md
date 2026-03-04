@@ -18,7 +18,7 @@
 
 # 项目构建说明
 
-LibrarySystem包含了SQLite的`sqlite3.h`、`sqlite3.c`文件，用户无需为了编译项目额外下载SQLite。做到拿来即用，用户无需为完成课程作业耗费大量脑细胞。
+ibraryManagementSystem包含了SQLite的`sqlite3.h`、`sqlite3.c`文件，用户无需为了编译项目额外下载SQLite。做到拿来即用，用户无需为完成课程作业耗费大量脑细胞。
 
 
 
