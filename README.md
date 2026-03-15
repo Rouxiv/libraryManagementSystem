@@ -49,6 +49,7 @@ The system implements role-based access control with two user types:
 | Security Token | Support for password recovery security tokens |
 | Overdue Alerts | Automatic detection and notification of overdue books |
 | Adaptive UI | Tables automatically adjust to terminal width |
+| Multi-Language Support | Switch between English and Chinese interface languages |
 
 ---
 
@@ -258,6 +259,12 @@ cmake --build .
 - Students are notified of overdue books upon login
 - Admin can view all borrowing records with overdue status
 
+### 5. Language Switching
+
+- Switch between English and Chinese interface languages
+- Language preference is saved in config.ini file
+- Accessible from the main menu (option 4)
+
 ---
 
 ## Screenshots
@@ -269,8 +276,20 @@ cmake --build .
 1. Login
 2. Student Registration
 3. Forgot Password
+4. Choose Language / 选择语言
 0. Exit
 --------------------------------------------
+Please enter your choice:
+```
+
+### Language Selection Menu
+
+```
+--- Choose Language ---
+1. English
+2. 中文
+0. Return
+-----------------------------
 Please enter your choice:
 ```
 
@@ -334,7 +353,8 @@ libraryManagementSystem/
 ├── header/
 │   ├── database.h          # Database manager class declaration
 │   ├── sha256.h            # SHA-256 encryption header
-│   └── utils.h             # Utility functions (clear screen, terminal width, etc.)
+│   ├── utils.h             # Utility functions (clear screen, terminal width, etc.)
+│   └── localization.h      # Localization and language switching functionality
 ├── src/
 │   ├── main.cpp            # Program entry point and UI logic
 │   ├── database.cpp        # Database operations implementation
@@ -358,6 +378,7 @@ libraryManagementSystem/
 | **SQLite3** | Lightweight embedded database, zero configuration |
 | **CMake** | Cross-platform build system |
 | **SHA-256** | Password encryption algorithm |
+| **Localization** | Multi-language support with English/Chinese |
 
 ---
 
@@ -391,6 +412,13 @@ On first run, the program will automatically:
 3. Enter previously set security token
 4. Set new password
 
+### Language Switching
+
+1. From the main menu, select `4. Choose Language / 选择语言`
+2. Choose between `1. English` or `2. 中文`
+3. The interface language will change immediately
+4. Language preference is saved in config.ini file
+
 ---
 
 ## Notes
@@ -398,6 +426,7 @@ On first run, the program will automatically:
 | Item | Description |
 |------|-------------|
 | **Database File** | `library.db` is saved in the running directory, do not delete |
+| **Configuration File** | `config.ini` stores language preferences and other settings |
 | **Terminal Encoding** | Use UTF-8 encoding (Windows: `chcp 65001`) |
 | **Borrowing Limits** | 1-90 days borrowing period, book quantity cannot be negative |
 | **Deletion Limits** | Books with active borrowings cannot be deleted |

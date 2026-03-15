@@ -8,6 +8,7 @@ This document describes the core API interfaces and data structures of the Libra
 - [DatabaseManager Class](#databasemanager-class)
 - [SHA256 Class](#sha256-class)
 - [Utility Functions](#utility-functions)
+- [Localization Class](#localization-class)
 
 ---
 
@@ -499,6 +500,114 @@ Formats a cell string for table display.
 
 **Returns:**
 - `std::string`: Formatted string (truncated with "..." if too long, padded with spaces if too short)
+
+---
+
+## Localization Class
+
+Localization management class responsible for multi-language support.
+
+### Enum: Language
+
+Enumeration of supported languages.
+
+```cpp
+enum class Language {
+    ENGLISH,    // English language
+    CHINESE     // Chinese language
+};
+```
+
+### Singleton Instance
+
+#### getInstance()
+
+Gets the singleton instance of the Localization class.
+
+**Returns:**
+- `Localization&`: Reference to the singleton instance
+
+**Example:**
+```cpp
+Localization& loc = Localization::getInstance();
+```
+
+### Configuration Management
+
+#### loadConfig(const std::string& configFile = "config.ini")
+
+Loads the localization configuration from a file.
+
+**Parameters:**
+- `configFile`: Path to the configuration file (default: "config.ini")
+
+**Functionality:**
+- Reads the language setting from the config file
+- If no config file exists, defaults to Chinese and creates a new config
+- Updates the current language based on the configuration
+
+#### saveConfig() const
+
+Saves the current language setting to the configuration file.
+
+**Functionality:**
+- Writes the current language to the config file
+- Persists the language preference for next launch
+
+### Language Management
+
+#### setLanguage(Language lang)
+
+Sets the current language and saves the configuration.
+
+**Parameters:**
+- `lang`: Language enum value (ENGLISH or CHINESE)
+
+**Functionality:**
+- Updates the current language
+- Calls saveConfig() to persist the change
+
+#### getCurrentLanguage() const
+
+Gets the currently active language.
+
+**Returns:**
+- `Language`: Current language enum value
+
+#### getText(const std::string& key) const
+
+Retrieves the localized text for a given key.
+
+**Parameters:**
+- `key`: String key identifying the text to translate
+
+**Returns:**
+- `std::string`: Localized text in the current language, or the key if translation not found
+
+**Example:**
+```cpp
+std::string welcomeText = Localization::getInstance().getText("welcome_main_menu");
+// Returns "Welcome to Library Management System" if English is active
+// Returns "欢迎使用图书管理系统" if Chinese is active
+```
+
+### Macro Definition
+
+#### _(key)
+
+Convenience macro for accessing localized text.
+
+**Parameters:**
+- `key`: String key identifying the text to translate
+
+**Returns:**
+- `std::string`: Localized text in the current language
+
+**Example:**
+```cpp
+std::cout << _("welcome_main_menu") << std::endl;
+// Outputs the appropriate localized text based on current language
+```
 
 ---
 

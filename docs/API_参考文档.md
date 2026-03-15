@@ -8,6 +8,7 @@
 - [DatabaseManager 类](#databasemanager-类)
 - [SHA256 类](#sha256-类)
 - [工具函数](#工具函数)
+- [Localization 类](#localization-类)
 
 ---
 
@@ -499,6 +500,114 @@ std::string hashed = SHA256::hash("password123");
 
 **返回值:**
 - `std::string`: 格式化后的字符串 (超出截断并添加"...", 不足则填充空格)
+
+---
+
+## Localization 类
+
+本地化管理类，负责多语言支持功能。
+
+### 枚举: Language
+
+支持的语言枚举。
+
+```cpp
+enum class Language {
+    ENGLISH,    // 英语
+    CHINESE     // 中文
+};
+```
+
+### 单例实例
+
+#### getInstance()
+
+获取 Localization 类的单例实例。
+
+**返回值:**
+- `Localization&`: 单例实例的引用
+
+**示例:**
+```cpp
+Localization& loc = Localization::getInstance();
+```
+
+### 配置管理
+
+#### loadConfig(const std::string& configFile = "config.ini")
+
+从文件加载本地化配置。
+
+**参数:**
+- `configFile`: 配置文件路径 (默认: "config.ini")
+
+**功能:**
+- 从配置文件读取语言设置
+- 如果配置文件不存在，默认为中文并创建新配置文件
+- 根据配置更新当前语言
+
+#### saveConfig() const
+
+将当前语言设置保存到配置文件。
+
+**功能:**
+- 将当前语言写入配置文件
+- 持久化语言偏好供下次启动使用
+
+### 语言管理
+
+#### setLanguage(Language lang)
+
+设置当前语言并保存配置。
+
+**参数:**
+- `lang`: 语言枚举值 (ENGLISH 或 CHINESE)
+
+**功能:**
+- 更新当前语言
+- 调用 saveConfig() 持久化更改
+
+#### getCurrentLanguage() const
+
+获取当前激活的语言。
+
+**返回值:**
+- `Language`: 当前语言枚举值
+
+#### getText(const std::string& key) const
+
+根据给定键获取本地化文本。
+
+**参数:**
+- `key`: 标识要翻译文本的字符串键
+
+**返回值:**
+- `std::string`: 当前语言的本地化文本，如果找不到翻译则返回键本身
+
+**示例:**
+```cpp
+std::string welcomeText = Localization::getInstance().getText("welcome_main_menu");
+// 如果英语激活，返回 "Welcome to Library Management System"
+// 如果中文激活，返回 "欢迎使用图书管理系统"
+```
+
+### 宏定义
+
+#### _(key)
+
+访问本地化文本的便捷宏。
+
+**参数:**
+- `key`: 标识要翻译文本的字符串键
+
+**返回值:**
+- `std::string`: 当前语言的本地化文本
+
+**示例:**
+```cpp
+std::cout << _("welcome_main_menu") << std::endl;
+// 根据当前语言输出相应的本地化文本
+```
 
 ---
 
