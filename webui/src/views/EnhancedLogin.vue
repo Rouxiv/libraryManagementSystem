@@ -83,7 +83,7 @@
               <input
                 id="password"
                 v-model="credentials.password"
-                type="password"
+                :type="showPassword ? 'text' : 'password'"
                 :placeholder="t('password_placeholder')"
                 class="input-field"
               />
